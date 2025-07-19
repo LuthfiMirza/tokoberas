@@ -1,0 +1,56 @@
+/* Header Fixes and Overrides */
+
+/* Disable old header styles to prevent conflicts */
+header.old-header {
+    display: none !important;
+}
+
+/* Ensure proper spacing for content below new fixed header */
+.home {
+    padding-top: 150px !important; /* Increased for new header height */
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .home {
+        padding-top: 120px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .home {
+        padding-top: 100px !important;
+    }
+}
+
+/* Ensure sections have proper top padding */
+section {
+    scroll-margin-top: 10rem;
+}
+
+/* Fix any z-index conflicts */
+.main-header {
+    z-index: 9999 !important;
+}
+
+/* Smooth scrolling for anchor links */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 10rem;
+}
+
+/* Additional mobile fixes */
+@media (max-width: 991px) {
+    .main-header .header-nav.active {
+        z-index: 9998;
+    }
+    
+    .main-header .guest-auth.active {
+        z-index: 9998;
+    }
+}
+
+/* Ensure dropdown menus appear above other content */
+.user-dropdown.show {
+    z-index: 10000 !important;
+}

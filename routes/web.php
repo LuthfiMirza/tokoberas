@@ -1,12 +1,18 @@
-http://127.0.0.1:8000/checkout  <?php
+<?php
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\AuthController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/user/dashboard', [HomeController::class, 'dashboard'])->name('user.dashboard');
+
+// Authentication routes
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Product routes
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');

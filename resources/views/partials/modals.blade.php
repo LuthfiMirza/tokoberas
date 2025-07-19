@@ -557,34 +557,73 @@ function togglePassword(inputId) {
 }
 
 // Password strength checker
-document.getElementById('signupPassword').addEventListener('input', function(e) {
-    const password = e.target.value;
-    const strengthBar = document.querySelector('.strength-fill');
-    const strengthText = document.querySelector('.strength-text');
-    
-    let strength = 0;
-    let text = 'Lemah';
-    let color = '#dc3545';
-    
-    if (password.length >= 8) strength += 25;
-    if (/[a-z]/.test(password)) strength += 25;
-    if (/[A-Z]/.test(password)) strength += 25;
-    if (/[0-9]/.test(password)) strength += 25;
-    
-    if (strength >= 75) {
-        text = 'Kuat';
-        color = '#28a745';
-    } else if (strength >= 50) {
-        text = 'Sedang';
-        color = '#ffc107';
-    } else if (strength >= 25) {
-        text = 'Lemah';
-        color = '#fd7e14';
+document.addEventListener('DOMContentLoaded', function() {
+    const signupPassword = document.getElementById('signupPassword');
+    if (signupPassword) {
+        signupPassword.addEventListener('input', function(e) {
+            const password = e.target.value;
+            const strengthBar = document.querySelector('.strength-fill');
+            const strengthText = document.querySelector('.strength-text');
+            
+            let strength = 0;
+            let text = 'Lemah';
+            let color = '#dc3545';
+            
+            if (password.length >= 8) strength += 25;
+            if (/[a-z]/.test(password)) strength += 25;
+            if (/[A-Z]/.test(password)) strength += 25;
+            if (/[0-9]/.test(password)) strength += 25;
+            
+            if (strength >= 75) {
+                text = 'Kuat';
+                color = '#28a745';
+            } else if (strength >= 50) {
+                text = 'Sedang';
+                color = '#ffc107';
+            } else if (strength >= 25) {
+                text = 'Lemah';
+                color = '#fd7e14';
+            }
+            
+            strengthBar.style.width = strength + '%';
+            strengthBar.style.background = color;
+            strengthText.textContent = text;
+            strengthText.style.color = color;
+        });
     }
     
-    strengthBar.style.width = strength + '%';
-    strengthBar.style.background = color;
-    strengthText.textContent = text;
-    strengthText.style.color = color;
+    // Fix for modal switching functionality
+    function switchToSignup() {
+        const loginModal = document.getElementById("loginModal");
+        const signupModal = document.getElementById("signupModal");
+        
+        if (loginModal && signupModal) {
+            // Hide login modal
+            loginModal.classList.remove("show");
+            setTimeout(() => {
+                loginModal.style.display = "none";
+                // Show signup modal
+                signupModal.style.display = "flex";
+                signupModal.classList.add("show");
+            }, 300);
+        }
+    }
+    
+    // Add event listener for the signup button
+    const toSignupBtn = document.getElementById('toSignupModal');
+    if (toSignupBtn) {
+        toSignupBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            switchToSignup();
+        });
+    }
+    
+    // Also handle clicks using event delegation in case the button is dynamically created
+    document.addEventListener('click', function(e) {
+        if (e.target && e.target.id === 'toSignupModal') {
+            e.preventDefault();
+            switchToSignup();
+        }
+    });
 });
 </script>

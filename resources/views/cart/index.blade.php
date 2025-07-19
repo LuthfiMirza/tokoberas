@@ -318,8 +318,19 @@ function clearCart() {
 }
 
 function proceedToCheckout() {
-    // Redirect to checkout page
-    window.location.href = '{{ route("checkout.index") }}';
+    // Check if user is logged in
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            // User is logged in, proceed to checkout
+            window.location.href = '{{ route("checkout.index") }}';
+        } else {
+            // User is not logged in, show login modal
+            showNotification('Silakan login terlebih dahulu untuk melanjutkan ke pembayaran', 'error');
+            setTimeout(() => {
+                openLoginModal();
+            }, 1000);
+        }
+    });
 }
 
 function showNotification(message, type) {

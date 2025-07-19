@@ -228,61 +228,85 @@ function decreaseQuantity() {
 }
 
 function addToCart(productId) {
-    const quantity = parseInt(document.getElementById('quantity').value);
-    
-    fetch('{{ route("cart.add") }}', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        },
-        body: JSON.stringify({
-            product_id: productId,
-            quantity: quantity
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            showNotification(data.message, 'success');
-            updateCartCount(data.cart_count);
+    // Check if user is logged in
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            // User is logged in, proceed with adding to cart
+            const quantity = parseInt(document.getElementById('quantity').value);
+            
+            fetch('{{ route("cart.add") }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({
+                    product_id: productId,
+                    quantity: quantity
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showNotification(data.message, 'success');
+                    updateCartCount(data.cart_count);
+                } else {
+                    showNotification(data.message, 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showNotification('Terjadi kesalahan saat menambahkan produk', 'error');
+            });
         } else {
-            showNotification(data.message, 'error');
+            // User is not logged in, show login modal
+            showNotification('Silakan login terlebih dahulu untuk menambahkan produk ke keranjang', 'error');
+            setTimeout(() => {
+                openLoginModal();
+            }, 1000);
         }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        showNotification('Terjadi kesalahan saat menambahkan produk', 'error');
     });
 }
 
 function buyNow(productId) {
-    const quantity = parseInt(document.getElementById('quantity').value);
-    
-    // Add to cart first
-    fetch('{{ route("cart.add") }}', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        },
-        body: JSON.stringify({
-            product_id: productId,
-            quantity: quantity
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            // Redirect to cart
-            window.location.href = '{{ route("cart.index") }}';
+    // Check if user is logged in
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            // User is logged in, proceed with buy now
+            const quantity = parseInt(document.getElementById('quantity').value);
+            
+            // Add to cart first
+            fetch('{{ route("cart.add") }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({
+                    product_id: productId,
+                    quantity: quantity
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Redirect to cart
+                    window.location.href = '{{ route("cart.index") }}';
+                } else {
+                    showNotification(data.message, 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showNotification('Terjadi kesalahan', 'error');
+            });
         } else {
-            showNotification(data.message, 'error');
+            // User is not logged in, show login modal
+            showNotification('Silakan login terlebih dahulu untuk melakukan pembelian', 'error');
+            setTimeout(() => {
+                openLoginModal();
+            }, 1000);
         }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        showNotification('Terjadi kesalahan', 'error');
     });
 }
 
