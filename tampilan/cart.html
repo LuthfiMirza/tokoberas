@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>User Page - Cart & Payment</title>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body>
+
+  <header>
+
+        <a href="#" class="logo">Beras Kartini</a>
+
+        <nav class="navbar">
+            <a href="user1.html">Beranda</a>
+            <a href="user1.html">Produk</a>
+        </nav>
+
+        <div class="icons">
+            <i class="fas fa-bars" id="menu-bars"></i>
+            <div class="dropdown-container">
+                <i class="fas fa-solid fa-user" id="user-btn" onclick="toggleDropdown()"></i>
+                    <div class="dropdown-menu" id="user-dropdown">
+                        <a href="#">Profil Saya</a>
+                        <a href="#" onclick="logout()">Logout</a>
+                    </div>
+            </div>
+
+            <i class="fas fa-shopping-cart"></i>
+        </div>
+  </header>
+
+  <main>
+    <section class="product-section">
+      <h2>Daftar Produk</h2>
+      <div class="product-list">
+        <div class="product">
+          <h3>beras putih</h3>
+          <p>Rp120.000</p>
+          <button onclick="addToCart('beras putih', 120000)">Tambah</button>
+        </div>
+        <div class="product">
+          <h3>beras putih</h3>
+          <p>Rp120.000</p>
+          <button onclick="addToCart('beras putih', 120000)">Tambah</button>
+        </div>
+        <div class="product">
+          <h3>beras putih</h3>
+          <p>Rp120.000</p>
+          <button onclick="addToCart('beras putih', 120000)">Tambah</button>
+        </div>
+      </div>
+    </section>
+
+    <aside class="cart-section">
+      <h2>🛒 Keranjang Belanja</h2>
+      <ul id="cart-list"></ul>
+      <p>Total: Rp<span id="total">0</span></p>
+    </aside>
+  </main>
+
+  <section class="payment-section">
+    <div class="button-row">
+        <button type="button" id="back-btn" onclick="window.location.href='user1.html'">Back</button>
+        <button type="submit" id="payment-btn" onclick="payment()">Lanjut Pembayaran</button>
+    </div>
+  </section>
+
+
+
+
+  <script>
+    let cart = [];
+let total = 0;
+
+// Tambah produk ke keranjang
+function addToCart(name, price) {
+  cart.push({ name, price });
+  total += price;
+  renderCart();
+}
+
+function renderCart() {
+  const list = document.getElementById("cart-list");
+  list.innerHTML = "";
+  cart.forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = `${item.name} - Rp${item.price}`;
+    list.appendChild(li);
+  });
+  document.getElementById("total").textContent = total;
+}
+
+  // Fungsi untuk logout
+  function logout() {
+    // Logika untuk logout, misalnya menghapus token atau mengarahkan ke halaman login
+    alert("Anda telah logout.");
+    window.location.href = "index.html"; // Ganti dengan URL halaman login
+  }
+
+  function payment(){
+    const paymentBtn = document.getElementById('payment-btn');
+    window.location.href = 'checkout.html'; // Ganti dengan URL halaman checkout
+  }
+
+  // Toggle dropdown menu
+
+ function toggleDropdown() {
+    const dropdown = document.getElementById('user-dropdown');
+    dropdown.classList.toggle('active');
+  }
+
+  function cartsection() {
+    const cartBtn = document.getElementById('cart-btn');
+    window.location.href = 'cart.html'; // Ganti dengan URL halaman keranjang
+  }
+
+  // Tutup dropdown saat klik di luar
+  document.addEventListener('click', function (e) {
+    const dropdown = document.getElementById('user-dropdown');
+    const userBtn = document.getElementById('user-btn');
+
+    // Jika klik bukan di user-btn atau dropdown
+    if (!userBtn.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.classList.remove('active');
+    }
+  });
+  </script>
+</body>
+</html>

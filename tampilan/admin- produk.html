@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manajemen Produk</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      background: white;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    input[type="text"], input[type="number"] {
+      padding: 8px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      width: 200px;
+    }
+
+    button {
+      padding: 8px 16px;
+      background-color: #3498db;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+
+    .delete-btn {
+      background-color: #e74c3c;
+    }
+
+    .delete-btn:hover {
+      background-color: #c0392b;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Manajemen Produk</h1>
+  </header>
+
+  <div class="container">
+    <h2>Tambah Produk</h2>
+    <form id="productForm">
+      <input type="text" id="productName" placeholder="Nama Produk" required>
+      <input type="number" id="productPrice" placeholder="Harga (Rp)" required>
+      <button type="submit">Tambah</button>
+    </form>
+
+    <h2>Daftar Produk</h2>
+    <table id="productTable">
+      <thead>
+        <tr>
+          <th>Nama Produk</th>
+          <th>Harga</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Data produk akan muncul di sini -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const productForm = document.getElementById('productForm');
+    const productTableBody = document.querySelector('#productTable tbody');
+    let products = [];
+
+    function formatRupiah(number) {
+      return 'Rp' + Number(number).toLocaleString('id-ID');
+    }
+
+    function renderProducts() {
+      productTableBody.innerHTML = '';
+      products.forEach((product, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${product.name}</td>
+          <td>${formatRupiah(product.price)}</td>
+          <td><button class="delete-btn" onclick="deleteProduct(${index})">Hapus</button></td>
+        `;
+        productTableBody.appendChild(row);
+      });
+    }
+
+    function deleteProduct(index) {
+      products.splice(index, 1);
+      renderProducts();
+    }
+
+    productForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('productName').value.trim();
+      const price = document.getElementById('productPrice').value.trim();
+
+      if (name && price) {
+        products.push({ name, price });
+        renderProducts();
+        productForm.reset();
+      }
+    });
+  </script>
+
+
+
+</body>
+</html>
+
+<link rel="stylesheet" href="style.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manajemen Produk</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+

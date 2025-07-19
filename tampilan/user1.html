@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beras Kartini</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body>
+    <header>
+
+        <a href="#" class="logo">Beras Kartini</a>
+
+        <nav class="navbar">
+            <a href="#home">Beranda</a>
+            <a href="#produk">Produk</a>
+        </nav>
+
+        <div class="icons">
+            <i class="fas fa-bars" id="menu-bars"></i>
+            <div class="dropdown-container">
+                <i class="fas fa-solid fa-user" id="user-btn" onclick="toggleDropdown()"></i>
+                    <div class="dropdown-menu" id="user-dropdown">
+                        <!-- <a href="#">Profil Saya</a> -->
+                        <a href="index.html" onclick="logout()">Logout</a>
+                    </div>
+            </div>
+
+            <i class="fas fa-shopping-cart" id="cart-btn" onclick="cartsection()"></i>
+        </div>
+    </header>
+
+
+
+    <section class="home" id="home">
+                    <div class="content">
+                        <h2>Selamat Datang di Toko Beras Kartini!</h2>
+                        <p>Kami menghadirkan beragam pilihan beras terbaik dari mancanegara, dipilih secara ketat untuk memastikan kualitas unggul di setiap butirnya. 
+                            Komitmen kami adalah menyediakan beras impor berkualitas tinggi untuk memenuhi kebutuhan rumah tangga, usaha kuliner, hingga kebutuhan grosir. 
+                            Dengan proses seleksi dan distribusi yang terjaga, setiap beras yang kami kirimkan bersih, sehat, dan layak konsumsi. 
+                            Dapatkan beras favorit Anda dengan harga kompetitif dan pelayanan terpercaya hanya di Pusat Beras Nusantara.</p>
+                    </div>
+                    <div class="image">
+                        <img src="images/Homeberas1.jpg" alt="">
+                    </div>
+    </section>
+
+
+ <!-- produk - menu -->
+    <section class="produk" id="produk">
+
+        <h3 class="sub-heading"> Produk </h3>
+        <h1 class="heading"> Beras Terlaris Kami </h1>
+
+        <div class="box-container">
+            <div class="box">
+                <div class="image">
+                    <img src="images/beras1.jpg" alt="Shukriya" />
+                    <!-- <a href="#" class="fas fa-heart"></a> -->
+                </div>
+
+                <div class="content">
+                        <h2>Beras putih</h2>
+                        <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        </div>
+
+                        <!-- Tambahkan baris ini -->
+                        <div class="action-bar">
+                        <button class="pesan-btn" onclick="pesanProduk('Shukriya', 200000)">Pesan</button>
+                        <span class="price">Rp 200.000</span>
+                        </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/beras2.jpg" alt="">
+                    <!-- <a href="#" class="fas fa-heart"></a> -->
+                </div>
+                <div class="content">
+                    <h2>Beras putih</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="action-bar">
+                        <button class="pesan-btn" onclick="pesanProduk('Aura', 195000)">Pesan</button>
+                        <span class="price">Rp 195.000</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/beras3.jpg" alt="">
+                    <!-- <a href="#" class="fas fa-heart"></a> -->
+                </div>
+                <div class="content">
+                    <h2>Beras putih</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="action-bar">
+                        <button class="pesan-btn" onclick="pesanProduk('Jabal Nur', 170000)">Pesan</button>
+                        <span class="price">Rp 170.000</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/beras4.jpg" alt="">
+                    <!-- <a href="#" class="fas fa-heart"></a> -->
+                </div>
+                <div class="content">
+                    <h2>Beras putih</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+            <div class="action-bar">
+            <button class="pesan-btn" onclick="pesanProduk('India Feast', 200000)">Pesan</button>
+            <span class="price">Rp 200.000</span>
+            </div>
+    </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/beras5.jpg" alt="">
+                    <!-- <a href="#" class="fas fa-heart"></a> -->
+                </div>
+                <div class="content">
+                    <h2>Beras putih</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+            <div class="action-bar">
+            <button class="pesan-btn" onclick="pesanProduk('Daawat Sella', 195000)">Pesan</button>
+            <span class="price">Rp 195.000</span>
+            </div>
+    </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/beras6.jpg" alt="">
+                    <!-- <a href="#" class="fas fa-heart"></a> -->
+                </div>
+                <div class="content">
+                    <h2>Beras putih</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+            <div class="action-bar">
+            <button class="pesan-btn" onclick="pesanProduk('Alishaan', 250000)">Pesan</button>
+            <span class="price">Rp 250.000</span>
+            </div>
+    </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/beras7.jpg" alt="">
+                    <!-- <a href="#" class="fas fa-heart"></a> -->
+                </div>
+                <div class="content">
+                    <h2>Beras putih</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+            <div class="action-bar">
+            <button class="pesan-btn" onclick="pesanProduk('Shukriya', 220000)">Pesan</button>
+            <span class="price">Rp 220.000</span>
+            </div>
+    </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/beras8.jpg" alt="">
+                    <!-- <a href="#" class="fas fa-heart"></a> -->
+                </div>
+                <div class="content">
+                    <h2>Beras putih</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+            <div class="action-bar">
+            <button class="pesan-btn" onclick="pesanProduk('Aura', 255000)">Pesan</button>
+            <span class="price">Rp 255.000</span>
+            </div>
+    </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/beras9.jpg" alt="">
+                    <!-- <a href="#" class="fas fa-heart"></a> -->
+                </div>
+                <div class="content">
+                    <h2>Beras putih</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+               <div class="action-bar">
+            <button class="pesan-btn" onclick="pesanProduk('India Saalm', 255000)">Pesan</button>
+            <span class="price">Rp 255.000</span>
+            </div>
+            </div>         
+        </div>
+    </section>
+
+
+
+    <section class="footer">
+        <div class="box-container-footer">
+
+            <div class="box-footer">
+                <h3>Lokasi Toko</h3>
+                <a href="#">Jakarta Selatan</a>
+                <a href="#">Jl. Haji Bolot</a>
+            </div>
+
+            <div class="box-footer">
+                <h3>Kontak Kami</h3>
+                <a href="#">081394450704</a>
+                <a href="#">kartinitokoberas@gmail.com</a>
+                <a href="https://www.instagram.com/beraskartini?igsh=MThzbWRyZ3M1ejNzaw=="target="_blank">@beraskartini</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- custom js file link  -->
+    <!-- <script type="module" src="js/script.js"></script> -->
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+    <script>
+        // Inisialisasi Firebase (versi 8)
+        var firebaseConfig = {
+            apiKey: "AIzaSyBwvS0wDsBboVtjGJ1c4R30J5xrWoMpRvE",
+            authDomain: "website-beras-kartini.firebaseapp.com",
+            projectId: "website-beras-kartini",
+            storageBucket: "website-beras-kartini.appspot.com",
+            messagingSenderId: "111531678421",
+            appId: "1:111531678421:web:339488ee0a4e0f23b3e05c",
+            measurementId: "G-SSZW44QRVX"
+        };
+        firebase.initializeApp(firebaseConfig);
+        var db = firebase.firestore();
+    </script>
+
+    <script>
+  function toggleDropdown() {
+    const dropdown = document.getElementById('user-dropdown');
+    dropdown.classList.toggle('active');
+  }
+
+  function cartsection() {
+    const cartBtn = document.getElementById('cart-btn');
+    window.location.href = 'cart.html'; // Ganti dengan URL halaman keranjang
+  }
+
+  // Tutup dropdown saat klik di luar
+  document.addEventListener('click', function (e) {
+    const dropdown = document.getElementById('user-dropdown');
+    const userBtn = document.getElementById('user-btn');
+
+    // Jika klik bukan di user-btn atau dropdown
+    if (!userBtn.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.classList.remove('active');
+    }
+  });
+</script>
+
+
+
+</body>
+</html>

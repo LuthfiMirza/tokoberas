@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Warung Beras Sejahtera</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <!-- <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: white;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .text-center {
+      text-align: center;
+    }
+    .title {
+      font-size: 28px;
+      font-weight: bold;
+      color: #16a34a;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      color: #6b7280;
+      margin-bottom: 40px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    @media (min-width: 768px) {
+      .grid-payment {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .box {
+      background-color: white;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    input[type="text"],
+    input[type="tel"],
+    textarea {
+      width: 80%;
+      padding: 10px 16px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      outline: none;
+      font-size: 14px;
+    }
+    input:focus,
+    textarea:focus {
+      border-color: #4ade80;
+      box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.25);
+    }
+    .radio-group,
+    .grid-payment {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: 1fr 1fr;
+    }
+    .option {
+      padding: 16px;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+    }
+    .option:hover,
+    .option.active {
+      border-color: #4ade80;
+      background-color: #f0fdf4;
+    }
+    .option img {
+      height: 48px;
+      margin-right: 12px;
+    }
+    .product {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+    }
+    .product img {
+      width: 64px;
+      height: 64px;
+      border-radius: 6px;
+      object-fit: cover;
+      margin-right: 16px;
+    }
+    .product-info {
+      display: flex;
+      align-items: center;
+    }
+    .summary {
+      margin-top: 24px;
+    }
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .total {
+      border-top: 1px solid #e5e7eb;
+      padding-top: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #16a34a;
+    }
+    .btn {
+      background-color: #4ade80;
+      color: white;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 6px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 16px;
+    }
+    .btn:hover {
+      background-color: #3bd171;
+    }
+    .terms {
+      margin-top: 16px;
+      font-size: 13px;
+      text-align: center;
+      color: #6b7280;
+    }
+    .terms a {
+      color: #16a34a;
+      text-decoration: none;
+    }
+    .terms a:hover {
+      text-decoration: underline;
+    }
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.4);
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      width: 90%;
+      position: relative;
+    }
+    .close {
+      color: #aaa;
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .close:hover {
+      color: #000;
+    }
+  </style> -->
+</head>
+<body>
+  <div class="container">
+    <div class="text-center">
+      <h1 class="title">Checkout Pembelian</h1>
+      <p class="subtitle">Lengkapi informasi berikut untuk menyelesaikan pembelian beras Anda</p>
+    </div>
+    <div class="grid">
+      <div class="box">
+        <h2>Informasi Pembeli</h2>
+        <form id="checkoutForm">
+          <label for="nama">Nama Lengkap</label>
+          <input type="text" id="nama" name="nama" required>
+
+          <label for="phone">Nomor HP/WhatsApp</label>
+          <input type="tel" id="phone" name="phone" required placeholder="0812-3456-7890">
+
+          <label for="alamat">Alamat Lengkap</label>
+          <textarea id="alamat" name="alamat" rows="4" required placeholder="Jl. Contoh No. 123..."></textarea>
+
+          <label>Metode Pengiriman</label>
+          <div class="radio-group">
+            <div class="option" onclick="selectShipping('reguler', this)">
+              <input type="radio" id="reguler" name="shipping" value="reguler" checked>
+              <label for="reguler">Lalamove</label>
+            </div>
+            <div class="option" onclick="selectShipping('express', this)">
+              <input type="radio" id="express" name="shipping" value="express">
+              <label for="express">Express (1-2 hari) - Rp 30.000</label>
+            </div>
+            <div class="option" onclick="selectShipping('pickup', this)">
+              <input type="radio" id="pickup" name="shipping" value="pickup">
+              <label for="pickup">Ambil Sendiri (Gratis)</label>
+            </div>
+          </div>
+
+          <label>Metode Pembayaran</label>
+          <div class="grid-payment">
+            <div class="option" onclick="selectPayment('bank_transfer', this)">
+              <input type="radio" id="bank_transfer" name="payment" value="bank_transfer">
+              <img src="https://placehold.co/100x60" alt="Bank">
+              <span>Transfer Bank</span>
+            </div>
+            <div class="option" onclick="selectPayment('gopay', this)">
+              <input type="radio" id="gopay" name="payment" value="gopay">
+              <img src="https://placehold.co/100x60" alt="GoPay">
+              <span>GoPay</span>
+            </div>
+            <div class="option" onclick="selectPayment('ovo', this)">
+              <input type="radio" id="ovo" name="payment" value="ovo">
+              <img src="https://placehold.co/100x60" alt="OVO">
+              <span>OVO</span>
+            </div>
+            <div class="option" onclick="selectPayment('dana', this)">
+              <input type="radio" id="dana" name="payment" value="dana">
+              <img src="https://placehold.co/100x60" alt="DANA">
+              <span>DANA</span>
+            </div>
+            <div class="option" onclick="selectPayment('cod', this)">
+              <input type="radio" id="cod" name="payment" value="cod">
+              <img src="https://placehold.co/100x60" alt="COD">
+              <span>COD</span>
+            </div>
+            <div class="option" onclick="selectPayment('shopee_pay', this)">
+              <input type="radio" id="shopee_pay" name="payment" value="shopee_pay">
+              <img src="https://placehold.co/100x60" alt="ShopeePay">
+              <span>ShopeePay</span>
+            </div>
+          </div>
+
+          <label for="notes">Catatan (Opsional)</label>
+          <textarea id="notes" name="notes" rows="2" placeholder="Contoh: Plastik khusus untuk beras 10kg"></textarea>
+        </form>
+      </div>
+
+      <div class="box">
+        <h2>Ringkasan Pesanan</h2>
+        <div class="product">
+          <div class="product-info">
+            <img src="https://placehold.co/80x80" alt="Beras Pandan Wangi">
+            <div>
+              <div>Beras Pandan Wangi</div>
+              <small>5 kg</small>
+            </div>
+          </div>
+          <span>Rp 75.000</span>
+        </div>
+        <div class="product">
+          <div class="product-info">
+            <img src="https://placehold.co/80x80" alt="Beras IR 64">
+            <div>
+              <div>Beras IR 64</div>
+              <small>10 kg</small>
+            </div>
+          </div>
+          <span>Rp 120.000</span>
+        </div>
+
+        <div class="summary">
+          <div class="summary-item">
+            <span>Subtotal</span>
+            <span>Rp 195.000</span>
+          </div>
+          <div class="summary-item">
+            <span>Ongkos Kirim</span>
+            <span id="shippingCost">Rp 15.000</span>
+          </div>
+          <div class="summary-item total">
+            <span>Total Pembayaran</span>
+            <span id="totalCost">Rp 210.000</span>
+          </div>
+        </div>
+
+        <button type="button" class="btn" onclick="submitCheckout()">Bayar Sekarang</button>
+        <button type="button" class="btn" onclick="window.location.href='user1.html'">Kembali</button>
+        <div class="terms">
+          Dengan mengklik "Bayar Sekarang", Anda menyetujui <a href="#">Syarat dan Ketentuan</a> kami.
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MODAL -->
+  <div id="checkoutModal" class="modalcheckout">
+    <div class="modal-checkout-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h3>Pesanan Anda Berhasil!</h3>
+      <p id="modalDetail" style="margin-top: 10px; font-size: 14px;"></p>
+    </div>
+  </div>
+
+  <script>
+    function selectShipping(value, element) {
+      document.querySelectorAll('.radio-group .option').forEach(option => option.classList.remove('active'));
+      element.classList.add('active');
+      const cost = value === 'express' ? 30000 : value === 'pickup' ? 0 : 15000;
+      document.getElementById('shippingCost').textContent = cost === 0 ? 'Gratis' : 'Rp ' + cost.toLocaleString('id');
+      document.getElementById('totalCost').textContent = 'Rp ' + (195000 + cost).toLocaleString('id');
+    }
+    function selectPayment(value, element) {
+      document.querySelectorAll('.grid-payment .option').forEach(option => option.classList.remove('active'));
+      element.classList.add('active');
+      document.getElementById(value).checked = true;
+    }
+    function submitCheckout() {
+      const form = document.getElementById('checkoutForm');
+      const nama = form.nama.value;
+      const alamat = form.alamat.value;
+      const shipping = form.querySelector('input[name="shipping"]:checked').value;
+      const payment = form.querySelector('input[name="payment"]:checked')?.value;
+      if (!payment) return alert('Silakan pilih metode pembayaran terlebih dahulu');
+
+      // Tampilkan modal
+      const modal = document.getElementById('checkoutModal');
+      const detail = document.getElementById('modalDetail');
+      detail.innerText = `Atas nama: ${nama}\nAlamat: ${alamat}\nPengiriman: ${shipping}\nPembayaran: ${payment}`;
+      modal.style.display = 'block';
+    }
+    function closeModal() {
+      document.getElementById('checkoutModal').style.display = 'none';
+    }
+    // Tutup modal jika klik di luar
+    window.onclick = function(event) {
+      const modal = document.getElementById('checkoutModal');
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
